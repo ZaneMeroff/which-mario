@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Which Super Mario?</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css?family=McLaren&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <!-- menu image -->
+      <h1>Super Mario Guesser</h1>
+    </header>
+    <main>
+      <div class="add-players-screen">
+        <div class="player-inputs">
+          <div class="player-1-container">
+            <label>Player 1</label>
+            <input type="text" class="input-player-1">
+          </div>
+          <div class="player-2-container">
+            <label>Player 2</label>
+            <input type="text" class="input-player-2">
+          </div>
+        </div>
+        <div class="play-game-button-container">
+          <button type="button" class="play-game-button">START GAME</button>
+          <!-- ^^ need to use .toUpperCase method in JS -->
+        </div>
+      </div>
+      <div class="rules-screen">
+        <p class="welcome-players-text">Welcome Player 1 and Player 2!</p>
+        <p class="game-rules">The goal of the game is to find all 5 pairs of cards as quickly as possible. The player that finds the greatest numbers of pairs, wins.</p>
+        <p class="game-rules">To begin playing, the player whose name is highlighted can click any card in the card pile. It will flip over and reveal a picture. Click another card. If they match, they will disappear and you will have completed a match! If they don’t, you’ll have THREE seconds to look at them before they flip back over. Then it’s time for the other player to try!</p>
+        <p class="game-rules">After you play, you’ll see the name of the final winner and how long it took to win the game.</p>
+        <button type="button" class="play-game-button2">START GAME</button>
+          <!-- ^^ need to use .toUpperCase method in JS -->
+      </div>
+      <section class="game-play">
+        <div class="p1-game-board">
+
+          <div class="p1-heading">
+            <p>PLAYER 1</p>
+          </div>
+
+          <div class="p1-matches-heading">
+            <p>MATCHES</p>
+            <p>THIS ROUND</p>
+            <p class="p1-score">5</p>
+          </div>
+
+          <div class="p1-high-score-heading">
+            <p>GAME WINS</p>
+            <p>ROUND ONE</p>
+            <p>10.23 SECONDS</p>
+          </div>
+
+        </div>
+<!-- --------------------------------------------------------------------------------- -->
+        <div class="card-area">
+
+         <div class="row-1">
+
+          <div class="card1 flip-container" ontouchstart="this.classList.toggle('hover');">
+	          <div class="flipper">
+	          	<div class="front">
+		       	    <p>FRONT OF CARD</p>
+	           	</div>
+		          <div class="back">
+			          <p>BACK OF CARD</p>
+		          </div>
+	          </div>
+          </div>
+
+          <div class="card2 flip-container" ontouchstart="this.classList.toggle('hover');">
+	          <div class="flipper">
+	          	<div class="front">
+		       	    <p>FRONT OF CARD</p>
+	           	</div>
+		          <div class="back">
+			          <p>BACK OF CARD</p>
+		          </div>
+	          </div>
+          </div>
+
+          <div class="card3 flip-container" ontouchstart="this.classList.toggle('hover');">
+	          <div class="flipper">
+	          	<div class="front">
+		       	    <p>FRONT OF CARD</p>
+	           	</div>
+		          <div class="back">
+			          <p>BACK OF CARD</p>
+		          </div>
+	          </div>
+          </div>
+
+          </div>
+
+<!-------------------------- -->
+
+         <div class="row-2">
+
+           <div class="card4 flip-container" ontouchstart="this.classList.toggle('hover');">
+ 	          <div class="flipper">
+ 	          	<div class="front">
+ 		       	    <p>FRONT OF CARD</p>
+ 	           	</div>
+ 		          <div class="back">
+ 			          <p>BACK OF CARD</p>
+ 		          </div>
+ 	          </div>
+           </div>
+
+           <div class="card5 flip-container" ontouchstart="this.classList.toggle('hover');">
+ 	          <div class="flipper">
+ 	          	<div class="front">
+ 		       	    <p>FRONT OF CARD</p>
+ 	           	</div>
+ 		          <div class="back">
+ 			          <p>BACK OF CARD</p>
+ 		          </div>
+ 	          </div>
+           </div>
+
+           <div class="card6 flip-container" ontouchstart="this.classList.toggle('hover');">
+ 	          <div class="flipper">
+ 	          	<div class="front">
+ 		       	    <p>FRONT OF CARD</p>
+ 	           	</div>
+ 		          <div class="back">
+ 			          <p>BACK OF CARD</p>
+ 		          </div>
+ 	          </div>
+           </div>
+
+           <div class="card7 flip-container" ontouchstart="this.classList.toggle('hover');">
+ 	          <div class="flipper">
+ 	          	<div class="front">
+ 		       	    <p>FRONT OF CARD</p>
+ 	           	</div>
+ 		          <div class="back">
+ 			          <p>BACK OF CARD</p>
+ 		          </div>
+ 	          </div>
+           </div>
+
+         </div>
+
+<!-------------------------- -->
+
+         <div class="row-3">
+           <p>ROW 3</p>
+         </div>
+
+        </div>
+<!-- -------------------------------------------------------------------------------- -->
+        <div class="p2-game-board">
+
+          <div class="p2-heading">
+            <p>PLAYER 2</p>
+          </div>
+
+          <div class="p2-matches-heading">
+            <p>MATCHES</p>
+            <p>THIS ROUND</p>
+            <p class="p1-score">8</p>
+          </div>
+
+          <div class="p2-high-score-heading">
+            <p>GAME WINS</p>
+            <p>ROUND ONE</p>
+            <p>12.91 SECONDS</p>
+          </div>
+
+        </div>
+    </div>
+    </main>
+    <script src="main.js"></script>
+    <script src="deck.js"></script>
+    <script src="card.js"></script>
+  </body>
+</html>
