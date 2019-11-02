@@ -54,6 +54,7 @@ input {
   width: 300px;
   border-radius: 30px;
   font-size: 140%;
+  padding-left: 20px;
   /* ^ need to add margin-left to inputs */
 }
 
@@ -83,33 +84,51 @@ label {
   flex-direction: column;
 }
 
+.welcome-players-text,
+.p1-error-message,
 .game-rules {
-  font-size: 110%;
-  margin: 2%;
+  margin: 1%;
+  font-size: 115%;
   text-align: center;
-  background-color: rgba(255, 255, 0, 0.6);
+  background-color: rgba(255, 255, 0, 0.9);
   width: 70%;
-}
-
-.play-game-button2 {
-  margin-top: 5%;
-  height: 60px;
-  width: 50%;
-  font-size: 120%;
-  border-radius: 5px;
 }
 
 .welcome-players-text {
   font-size: 150%;
 }
 
-.game-play {
-  display: grid;
-  grid-template-columns: 18% 64% 18%;
+.play-game-button2 {
+  margin-top: 3%;
+  height: 60px;
+  width: 50%;
+  font-size: 120%;
+  border-radius: 30px;
 }
 
-.hidden {
-  display: none;
+.name-heading,
+.matches-heading,
+.high-score-heading {
+  border-bottom: 2px solid black;
+  text-align: center;
+  padding-top: 6%;
+  padding-bottom: 6%;
+  font-size: 120%
+}
+
+.player-name {
+  font-size: 150%;
+  font-weight: bold;
+}
+
+.p1-score {
+  font-size: 500%;
+  font-weight: bold;
+}
+
+section {
+  display: grid;
+  grid-template-columns: 18% 64% 18%;
 }
 
 .p1-game-board,
@@ -145,6 +164,13 @@ label {
   border: 2px solid black;
   background-color: white;
 }
+
+.p1-error-message {
+  top: 26%;
+  position: absolute;
+}
+
+/* -------------------ANIMATIONS-------------------- */
 
 /* entire container, keeps perspective */
 .flip-container {
@@ -187,4 +213,12 @@ label {
 /* back, initially hidden pane */
 .back {
 	transform: rotateY(180deg);
+}
+
+.hidden {
+  display: none;
+}
+
+.disabled {
+  cursor: default;
 }
