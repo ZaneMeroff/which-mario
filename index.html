@@ -17,6 +17,7 @@
           <div class="player-1-container">
             <label>Player 1</label>
             <input type="text" class="input-player-1" maxlength=32>
+            <p class="p1-error-message">YOU MUST ENTER A PLAYER NAME BEFORE CONTINUING</p>
           </div>
           <div class="player-2-container">
             <label>Player 2</label>
@@ -36,27 +37,27 @@
         <button type="button" class="play-game-button2">START GAME</button>
           <!-- ^^ need to use .toUpperCase method in JS -->
       </div>
-      <section class="game-play">
+      <section class="game-play-contianer">
         <div class="p1-game-board">
 
-          <div class="p1-heading">
-            <p>PLAYER 1</p>
+          <div class="name-heading">
+            <p class="player-name">PLAYER 1</p>
           </div>
 
-          <div class="p1-matches-heading">
+          <div class="matches-heading">
             <p>MATCHES</p>
             <p>THIS ROUND</p>
             <p class="p1-score">5</p>
           </div>
 
-          <div class="p1-high-score-heading">
+          <div class="high-score-heading">
             <p>GAME WINS</p>
             <p>ROUND ONE</p>
             <p>10.23 SECONDS</p>
           </div>
 
         </div>
-<!-- --------------------------------------------------------------------------------- -->
+
         <div class="card-area">
 
          <div class="row-1">
@@ -95,8 +96,6 @@
           </div>
 
           </div>
-
-<!-------------------------- -->
 
          <div class="row-2">
 
@@ -146,8 +145,6 @@
 
          </div>
 
-<!-------------------------- -->
-
          <div class="row-3">
 
            <div class="card8 flip-container" ontouchstart="this.classList.toggle('hover');">
@@ -186,20 +183,20 @@
          </div>
 
         </div>
-<!-- -------------------------------------------------------------------------------- -->
+
         <div class="p2-game-board">
 
-          <div class="p2-heading">
-            <p>PLAYER 2</p>
+          <div class="name-heading">
+            <p class="player-name">PLAYER 2</p>
           </div>
 
-          <div class="p2-matches-heading">
+          <div class="matches-heading">
             <p>MATCHES</p>
             <p>THIS ROUND</p>
             <p class="p1-score">8</p>
           </div>
 
-          <div class="p2-high-score-heading">
+          <div class="high-score-heading">
             <p>GAME WINS</p>
             <p>ROUND ONE</p>
             <p>12.91 SECONDS</p>
@@ -207,6 +204,7 @@
 
         </div>
     </div>
+  </section>
     </main>
     <script src="main.js"></script>
     <script src="deck.js"></script>
