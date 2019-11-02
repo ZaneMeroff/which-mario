@@ -12,7 +12,7 @@
 }
 
 header {
-  background-color: tomato;
+  background-color: #E40000;
   text-align: center;
   width: auto;
   height: 70px;
@@ -31,8 +31,10 @@ main {
 
 button {
   cursor: pointer;
-  background-color: #18E300;
+  background-color: #1CAB00;
   border: 3px solid yellow;
+  color: white;
+  font-weight: bolder;
 }
 
 .player-inputs {
@@ -42,7 +44,7 @@ button {
 
 .player-1-container,
 .player-2-container {
-  margin-top: 5%;
+  margin-top: 3%;
   display: flex;
   flex-direction: column;
 }
@@ -50,17 +52,17 @@ button {
 input {
   height: 50px;
   width: 300px;
-  border-radius: 5px;
+  border-radius: 30px;
   font-size: 140%;
   /* ^ need to add margin-left to inputs */
 }
 
 .play-game-button {
-  margin-top: 26%;
+  margin-top: 29%;
   height: 60px;
   width: 50%;
   font-size: 120%;
-  border-radius: 5px;
+  border-radius: 30px;
 }
 
 .play-game-button-container {
@@ -128,15 +130,6 @@ label {
   justify-content: space-around;
   width: 100%;
   height: 33.33%;
-  background-color: rgba(255, 0, 0, 0.9);
-}
-
-.row-2{
-  background-color: rgba(0, 255, 0, 0.9);
-}
-
-.row-3{
-  background-color: rgba(0, 0, 255, 0.9);
 }
 
 .card1,
