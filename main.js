@@ -11,25 +11,21 @@ var p1span = document.querySelector("span");
 
 window.onload = onLoad();
 
-inputPlayer1.addEventListener("keyup", validateUserInput);
 playGameButton.addEventListener("click", advanceToRulesScreen);
 playGameButton2.addEventListener("click", advanceToGameBoard);
 
 function onLoad() {
   rulesScreen.classList.add("hidden");
   gamePlayContainer.classList.add("hidden");
-  playGameButton.disabled = true;
   p1ErrorMessage.classList.add("hidden");
   playGameButton.classList.add("disabled");
 }
 
 function validateUserInput() {
   if (inputPlayer1.value) {
-    playGameButton.disabled = false;
-    playGameButton.classList.remove("disabled");
+    advanceToRulesScreen();
   } else {
-    playGameButton.disabled = true;
-    playGameButton.classList.add("disabled");
+    p1ErrorMessage.classList.remove("hidden");
   }
 }
 
@@ -37,7 +33,6 @@ function advanceToRulesScreen() {
   if (inputPlayer1.value === "") {
     p1ErrorMessage.classList.remove("hidden");
   } else {
-
     addPlayersScreen.classList.add("hidden");
     rulesScreen.classList.remove("hidden");
     p1span.innerHTML = inputPlayer1.value;
