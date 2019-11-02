@@ -7,6 +7,7 @@ var playGameButton = document.querySelector(".play-game-button");
 var p1ErrorMessage = document.querySelector(".p1-error-message");
 var playGameButton2 = document.querySelector(".play-game-button2");
 var main = document.querySelector("main");
+var p1span = document.querySelector("span");
 
 window.onload = onLoad();
 
@@ -28,6 +29,7 @@ function validateUserInput() {
     playGameButton.classList.remove("disabled");
   } else {
     playGameButton.disabled = true;
+    playGameButton.classList.add("disabled");
   }
 }
 
@@ -35,8 +37,10 @@ function advanceToRulesScreen() {
   if (inputPlayer1.value === "") {
     p1ErrorMessage.classList.remove("hidden");
   } else {
+
     addPlayersScreen.classList.add("hidden");
     rulesScreen.classList.remove("hidden");
+    p1span.innerHTML = inputPlayer1.value;
   }
 }
 
