@@ -178,6 +178,8 @@ section {
 	/* flip the pane when hovered */
 	.flip .flipper {
 		transform: rotateY(180deg);
+    position: relative;
+    left: -130px;
 	}
 
 .flip-container,
