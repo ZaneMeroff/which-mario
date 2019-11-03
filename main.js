@@ -3,13 +3,16 @@ var rulesScreen = document.querySelector(".rules-screen");
 var header = document.querySelector("header");
 var gamePlayContainer = document.querySelector("section");
 var inputPlayer1 = document.querySelector(".input-player-1");
+var inputPlayer2 = document.querySelector(".input-player-2");
 var playGameButton = document.querySelector(".play-game-button");
 var p1ErrorMessage = document.querySelector(".p1-error-message");
 var playGameButton2 = document.querySelector(".play-game-button2");
 var main = document.querySelector("main");
-var p1span = document.querySelector("span");
+var p1span = document.querySelector(".p1-span");
+var p2span = document.querySelector(".p2-span");
 var cardArea = document.querySelector(".card-area");
 var p1name = document.querySelector(".p1-name");
+var p2name = document.querySelector(".p2-name");
 
 window.onload = onLoad();
 
@@ -31,11 +34,13 @@ function advanceToRulesScreen() {
     addPlayersScreen.classList.add("hidden");
     rulesScreen.classList.remove("hidden");
     p1span.innerHTML = inputPlayer1.value;
+    p2span.innerHTML = inputPlayer2.value;
   }
 }
 
 function advanceToGameBoard() {
   p1name.innerHTML = inputPlayer1.value;
+  p2name.innerHTML = inputPlayer2.value;
   rulesScreen.classList.add("hidden");
   gamePlayContainer.classList.remove("hidden");
   header.classList.add("hidden");
