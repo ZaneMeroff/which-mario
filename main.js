@@ -9,6 +9,7 @@ var playGameButton2 = document.querySelector(".play-game-button2");
 var main = document.querySelector("main");
 var p1span = document.querySelector("span");
 var cardArea = document.querySelector(".card-area");
+var p1name = document.querySelector(".p1-name");
 
 window.onload = onLoad();
 
@@ -34,6 +35,7 @@ function advanceToRulesScreen() {
 }
 
 function advanceToGameBoard() {
+  p1name.innerHTML = inputPlayer1.value;
   rulesScreen.classList.add("hidden");
   gamePlayContainer.classList.remove("hidden");
   header.classList.add("hidden");
