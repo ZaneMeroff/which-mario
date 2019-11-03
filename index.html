@@ -8,8 +8,8 @@
   </head>
   <body>
     <header>
-      <!-- menu image -->
-      <h1>Super Mario Guesser</h1>
+      <img class="nav-button" src="./images/nav-button.png" alt="nav button">
+      <h1>Super Mario Memory Match</h1>
     </header>
     <main>
       <div class="add-players-screen">
@@ -17,46 +17,44 @@
           <div class="player-1-container">
             <label>Player 1</label>
             <input type="text" class="input-player-1" maxlength=32>
-            <p class="p1-error-message">PLEASE ENTER A PLAYER NAME BEFORE CONTINUING</p>
+            <p class="p1-error-message">please enter player names before continuing</p>
           </div>
           <div class="player-2-container">
             <label>Player 2</label>
-            <input type="text" class="input-player-2">
+            <input type="text" class="input-player-2" maxlength=32>
           </div>
         </div>
         <div class="play-game-button-container">
-          <button type="button" class="play-game-button">START GAME</button>
-          <!-- ^^ need to use .toUpperCase method in JS -->
+          <button type="button" class="play-game-button">start game</button>
         </div>
       </div>
       <div class="rules-screen">
-        <p class="welcome-players-text">Welcome <span></span>!</p>
+        <p class="welcome-players-text">Welcome <span class="p1-span"></span> & <span class="p2-span"></span> !</p>
         <p class="game-rules"> ~ </p>
         <p class="game-rules">The goal of the game is to find all 5 pairs of cards as quickly as possible. The player that finds the greatest numbers of pairs, wins.</p>
         <p class="game-rules"> ~ </p>
         <p class="game-rules">To begin playing, the player whose name is highlighted can click any card in the card pile. It will flip over and reveal a picture. Click another card. If they match, they will disappear and you will have completed a match! If they don’t, you’ll have THREE seconds to look at them before they flip back over. Then it’s time for the other player to try!</p>
         <p class="game-rules"> ~ </p>
         <p class="game-rules">After you play, you’ll see the name of the final winner and how long it took to win the game.</p>
-        <button type="button" class="play-game-button2">START GAME</button>
-          <!-- ^^ need to use .toUpperCase method in JS -->
+        <button type="button" class="play-game-button2">start game</button>
       </div>
       <section class="game-play-contianer">
         <div class="p1-game-board">
 
           <div class="name-heading">
-            <p class="player-name p1-name"></p>
+            <p class="p1-name"></p>
           </div>
 
           <div class="matches-heading">
-            <p>MATCHES</p>
-            <p>THIS ROUND</p>
-            <p class="p1-score">5</p>
+            <p class="up-case">matches</p>
+            <p class="up-case">this round</p>
+            <p class="p1-score">0</p>
           </div>
 
           <div class="high-score-heading">
-            <p>GAME WINS</p>
-            <p>ROUND ONE</p>
-            <p>10.23 SECONDS</p>
+            <p class="up-case">game wins</p>
+            <p class="up-case">round one</p>
+            <p class="up-case">00.00 seconds</p>
           </div>
 
         </div>
@@ -173,14 +171,14 @@
            </div>
 
            <div class="card card10 flip-container">
- 	          <div class="flipper">
- 	          	<div class="front">
- 		       	    <img class ="card10 front-of-card" src="./images/mario_card_back.jpg" alt="mario bricks">
- 	           	</div>
- 		          <div class="back">
- 			          <img class ="card10 front-of-card" src="./images/card_04.png" alt="helicopter mushroom">
- 		          </div>
- 	          </div>
+ 	           <div class="flipper">
+ 	             <div class="front">
+ 		       	     <img class ="card10 front-of-card" src="./images/mario_card_back.jpg" alt="mario bricks">
+ 	           	 </div>
+ 		           <div class="back">
+ 			           <img class ="card10 front-of-card" src="./images/card_04.png" alt="helicopter mushroom">
+ 		           </div>
+ 	           </div>
            </div>
 
          </div>
@@ -190,19 +188,19 @@
         <div class="p2-game-board">
 
           <div class="name-heading">
-            <p class="player-name">PLAYER 2</p>
+            <p class="p2-name"></p>
           </div>
 
           <div class="matches-heading">
-            <p>MATCHES</p>
-            <p>THIS ROUND</p>
-            <p class="p1-score">8</p>
+            <p class="up-case">matches</p>
+            <p class="up-case">this round</p>
+            <p class="p2-score">0</p>
           </div>
 
           <div class="high-score-heading">
-            <p>GAME WINS</p>
-            <p>ROUND ONE</p>
-            <p>12.91 SECONDS</p>
+            <p class="up-case">game wins</p>
+            <p class="up-case">round one</p>
+            <p class="up-case">00.00 seconds</p>
           </div>
 
         </div>
