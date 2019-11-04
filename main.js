@@ -15,8 +15,6 @@ var p1name = document.querySelector(".p1-name");
 var p2name = document.querySelector(".p2-name");
 var cardArea = document.querySelector(".card-area");
 
-var deckOfCards = [];
-// var card1 = ({name: 'card1', matchId: 01, isMatched: false, imageFront: url(), imageBack:()})
 
 window.onload = onLoad();
 
@@ -48,33 +46,45 @@ function advanceToGameBoard() {
   rulesScreen.classList.add("hidden");
   gamePlayContainer.classList.remove("hidden");
   header.classList.add("hidden");
-  // createCardsOnDOM();
-}
-
-function createInstance() {
-  var pastIdea = new Idea(titleInput.value, bodyInput.value);
-  ideaLog.push(pastIdea);
-  return pastIdea;
-}
-
-function createInstance() {
-  var pastIdea = new Idea(titleInput.value, bodyInput.value);
-  ideaLog.push(pastIdea);
-  return pastIdea;
+  createCardsOnDOM();
 }
 
 function createCardsOnDOM() {
-  var pcard1 = new Card ({cardId: 01, imageFront:"./images/card_01.png"});
-  var pcard2 = new Card ({cardId: 02, imageFront:"./images/card_02.png"});
-  var pcard3 = new Card ({cardId: 03, imageFront:"./images/card_03.png"});
-  document.querySelector(".card-spot-1").insertAdjacentHTML('beforeend',
-   `
-   <div class="card card1" data="card1">
-     <img class ="c1 card-back" src="./images/mario_card_back.jpg" alt="mario bricks">
-     <img class ="c1 card-face" src="./images/card_01.png" alt="blue flower">
-   </div>
-   `
-)
+  var pcard1 = new Card ({cardId: 1, matchId:"a", imageFront:"./images/card_01.png"});
+  var pcard2 = new Card ({cardId: 2, matchId:"b", imageFront:"./images/card_02.png"});
+  var pcard3 = new Card ({cardId: 3, matchId:"c", imageFront:"./images/card_03.png"});
+  var pcard4 = new Card ({cardId: 4, matchId:"d", imageFront:"./images/card_04.png"});
+  var pcard5 = new Card ({cardId: 5, matchId:"e", imageFront:"./images/card_05.png"});
+  var pcard6 = new Card ({cardId: 6, matchId:"a", imageFront:"./images/card_01.png"});
+  var pcard7 = new Card ({cardId: 7, matchId:"b", imageFront:"./images/card_02.png"});
+  var pcard8 = new Card ({cardId: 8, matchId:"c", imageFront:"./images/card_03.png"});
+  var pcard9 = new Card ({cardId: 9, matchId:"d", imageFront:"./images/card_04.png"});
+  var pcard10 = new Card ({cardId: 10, matchId:"e", imageFront:"./images/card_05.png"});
+  var deckOfCards = [pcard1, pcard2, pcard3, pcard4, pcard5, pcard6, pcard7, pcard8, pcard9, pcard10];
+
+  for (var i = 0; i < 3; i++) {
+  document.querySelector(".row-1").innerHTML += `
+   <div class="card card${deckOfCards[i].cardId}">
+     <img class ="c${deckOfCards[i].cardId} card-back" src="./images/mario_card_back.jpg" alt="mario bricks">
+     <img class ="c${deckOfCards[i].cardId} card-face" src=${deckOfCards[i].imageFront} alt="blue flower">
+   </div>`
+   }
+
+   for (var i = 3; i < 7; i++) {
+   document.querySelector(".row-2").innerHTML += `
+    <div class="card card${deckOfCards[i].cardId}">
+      <img class ="c${deckOfCards[i].cardId} card-back" src="./images/mario_card_back.jpg" alt="mario bricks">
+      <img class ="c${deckOfCards[i].cardId} card-face" src=${deckOfCards[i].imageFront} alt="blue flower">
+    </div>`
+   }
+
+    for (var i = 7; i <= 10; i++) {
+    document.querySelector(".row-3").innerHTML += `
+     <div class="card card${deckOfCards[i].cardId}">
+       <img class ="c${deckOfCards[i].cardId} card-back" src="./images/mario_card_back.jpg" alt="mario bricks">
+       <img class ="c${deckOfCards[i].cardId} card-face" src=${deckOfCards[i].imageFront} alt="blue flower">
+     </div>`
+   }
 }
 
 function startGame() {
