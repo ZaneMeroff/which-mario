@@ -28,7 +28,7 @@ function onLoad() {
 }
 
 function advanceToRulesScreen() {
-  if (inputPlayer1.value === "") {
+  if (!inputPlayer1.value) {
     p1ErrorMessage.classList.remove("hidden");
   } else {
     addPlayersScreen.classList.add("hidden");
@@ -46,9 +46,23 @@ function advanceToGameBoard() {
   header.classList.add("hidden");
 }
 
+function startGame() {
+  // for loop deck data
+  // instaciate card for each [i] in loop
+  // declare var for array of cards and pass into deck
+}
+
+function checkIfCardsMatch() {
+  // find a way to check if card is facing up
+  // if 2 cards are facing up, check to see if they match
+  // if they match, make them dissapear
+  // Player 1s match score should increase by +1
+}
+
 function buttonConditionals(event) {
     if (event.target.classList.contains("card1")) {
       document.querySelector(".card1").classList.toggle("flip");
+      console.log(card1.dataset.card1);
     }
     if (event.target.classList.contains("card2")) {
       document.querySelector(".card2").classList.toggle("flip");
