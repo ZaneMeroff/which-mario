@@ -13,6 +13,10 @@ var p2span = document.querySelector(".p2-span");
 var cardArea = document.querySelector(".card-area");
 var p1name = document.querySelector(".p1-name");
 var p2name = document.querySelector(".p2-name");
+var cardArea = document.querySelector(".card-area");
+
+var deckOfCards = [];
+// var card1 = ({name: 'card1', matchId: 01, isMatched: false, imageFront: url(), imageBack:()})
 
 window.onload = onLoad();
 
@@ -44,6 +48,33 @@ function advanceToGameBoard() {
   rulesScreen.classList.add("hidden");
   gamePlayContainer.classList.remove("hidden");
   header.classList.add("hidden");
+  // createCardsOnDOM();
+}
+
+function createInstance() {
+  var pastIdea = new Idea(titleInput.value, bodyInput.value);
+  ideaLog.push(pastIdea);
+  return pastIdea;
+}
+
+function createInstance() {
+  var pastIdea = new Idea(titleInput.value, bodyInput.value);
+  ideaLog.push(pastIdea);
+  return pastIdea;
+}
+
+function createCardsOnDOM() {
+  var pcard1 = new Card ({cardId: 01, imageFront:"./images/card_01.png"});
+  var pcard2 = new Card ({cardId: 02, imageFront:"./images/card_02.png"});
+  var pcard3 = new Card ({cardId: 03, imageFront:"./images/card_03.png"});
+  document.querySelector(".card-spot-1").insertAdjacentHTML('beforeend',
+   `
+   <div class="card card1" data="card1">
+     <img class ="c1 card-back" src="./images/mario_card_back.jpg" alt="mario bricks">
+     <img class ="c1 card-face" src="./images/card_01.png" alt="blue flower">
+   </div>
+   `
+)
 }
 
 function startGame() {
@@ -60,35 +91,34 @@ function checkIfCardsMatch() {
 }
 
 function buttonConditionals(event) {
-    if (event.target.classList.contains("card1")) {
+    if (event.target.classList.contains("c1")) {
       document.querySelector(".card1").classList.toggle("flip");
-      console.log(card1.dataset.card1);
     }
-    if (event.target.classList.contains("card2")) {
+    if (event.target.classList.contains("c2")) {
       document.querySelector(".card2").classList.toggle("flip");
     }
-    if (event.target.classList.contains("card3")) {
+    if (event.target.classList.contains("c3")) {
       document.querySelector(".card3").classList.toggle("flip");
     }
-    if (event.target.classList.contains("card4")) {
+    if (event.target.classList.contains("c4")) {
       document.querySelector(".card4").classList.toggle("flip");
     }
-    if (event.target.classList.contains("card5")) {
+    if (event.target.classList.contains("c5")) {
       document.querySelector(".card5").classList.toggle("flip");
     }
-    if (event.target.classList.contains("card6")) {
+    if (event.target.classList.contains("c6")) {
       document.querySelector(".card6").classList.toggle("flip");
     }
-    if (event.target.classList.contains("card7")) {
+    if (event.target.classList.contains("c7")) {
       document.querySelector(".card7").classList.toggle("flip");
     }
-    if (event.target.classList.contains("card8")) {
+    if (event.target.classList.contains("c8")) {
       document.querySelector(".card8").classList.toggle("flip");
     }
-    if (event.target.classList.contains("card9")) {
+    if (event.target.classList.contains("c9")) {
       document.querySelector(".card9").classList.toggle("flip");
     }
-    if (event.target.classList.contains("card10")) {
+    if (event.target.classList.contains("c10")) {
       document.querySelector(".card10").classList.toggle("flip");
     }
 }
