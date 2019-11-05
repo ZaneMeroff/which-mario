@@ -14,15 +14,28 @@ var cardArea = document.querySelector(".card-area");
 var p1name = document.querySelector(".p1-name");
 var p2name = document.querySelector(".p2-name");
 var cardArea = document.querySelector(".card-area");
+var pcard1 = new Card ({cardId: 0, matchId:"a", imageFront:"./images/card_01.png"});
+var pcard2 = new Card ({cardId: 1, matchId:"b", imageFront:"./images/card_02.png"});
+var pcard3 = new Card ({cardId: 2, matchId:"c", imageFront:"./images/card_03.png"});
+var pcard4 = new Card ({cardId: 3, matchId:"d", imageFront:"./images/card_04.png"});
+var pcard5 = new Card ({cardId: 4, matchId:"e", imageFront:"./images/card_05.png"});
+var pcard6 = new Card ({cardId: 5, matchId:"a", imageFront:"./images/card_01.png"});
+var pcard7 = new Card ({cardId: 6, matchId:"b", imageFront:"./images/card_02.png"});
+var pcard8 = new Card ({cardId: 7, matchId:"c", imageFront:"./images/card_03.png"});
+var pcard9 = new Card ({cardId: 8, matchId:"d", imageFront:"./images/card_04.png"});
+var pcard10 = new Card ({cardId: 9, matchId:"e", imageFront:"./images/card_05.png"});
+var deckOfCards = [pcard1, pcard2, pcard3, pcard4, pcard5, pcard6, pcard7, pcard8, pcard9, pcard10];
+
+var deck = new Deck(deckOfCards);
 
 
-window.onload = onLoad();
+window.onload = whenIStart();
 
 cardArea.addEventListener("click", buttonConditionals);
 playGameButton.addEventListener("click", advanceToRulesScreen);
 playGameButton2.addEventListener("click", advanceToGameBoard);
 
-function onLoad() {
+function whenIStart() {
   rulesScreen.classList.add("hidden");
   gamePlayContainer.classList.add("hidden");
   p1ErrorMessage.classList.add("hidden");
@@ -50,17 +63,7 @@ function advanceToGameBoard() {
 }
 
 function createCardsOnDOM() {
-  var pcard1 = new Card ({cardId: 1, matchId:"a", imageFront:"./images/card_01.png"});
-  var pcard2 = new Card ({cardId: 2, matchId:"b", imageFront:"./images/card_02.png"});
-  var pcard3 = new Card ({cardId: 3, matchId:"c", imageFront:"./images/card_03.png"});
-  var pcard4 = new Card ({cardId: 4, matchId:"d", imageFront:"./images/card_04.png"});
-  var pcard5 = new Card ({cardId: 5, matchId:"e", imageFront:"./images/card_05.png"});
-  var pcard6 = new Card ({cardId: 6, matchId:"a", imageFront:"./images/card_01.png"});
-  var pcard7 = new Card ({cardId: 7, matchId:"b", imageFront:"./images/card_02.png"});
-  var pcard8 = new Card ({cardId: 8, matchId:"c", imageFront:"./images/card_03.png"});
-  var pcard9 = new Card ({cardId: 9, matchId:"d", imageFront:"./images/card_04.png"});
-  var pcard10 = new Card ({cardId: 10, matchId:"e", imageFront:"./images/card_05.png"});
-  var deckOfCards = [pcard1, pcard2, pcard3, pcard4, pcard5, pcard6, pcard7, pcard8, pcard9, pcard10];
+
 
   for (var i = 0; i < 3; i++) {
   document.querySelector(".row-1").innerHTML += `
@@ -78,13 +81,17 @@ function createCardsOnDOM() {
     </div>`
    }
 
-    for (var i = 7; i <= 10; i++) {
+    for (var i = 7; i <= 9; i++) {
     document.querySelector(".row-3").innerHTML += `
      <div class="card card${deckOfCards[i].cardId}">
        <img class ="c${deckOfCards[i].cardId} card-back" src="./images/mario_card_back.jpg" alt="mario bricks">
        <img class ="c${deckOfCards[i].cardId} card-face" src=${deckOfCards[i].imageFront} alt="blue flower">
      </div>`
    }
+}
+
+function moveToSelectedCards() {
+  event.target.closest(".card");
 }
 
 function startGame() {
@@ -101,34 +108,10 @@ function checkIfCardsMatch() {
 }
 
 function buttonConditionals(event) {
-    if (event.target.classList.contains("c1")) {
-      document.querySelector(".card1").classList.toggle("flip");
+  for (var i = 0; i < deck.cards.length; i++) {
+
+    if (event.target.classList.contains(`c${i}`)) {
+      document.querySelector(`.card${i}`).classList.toggle("flip");
     }
-    if (event.target.classList.contains("c2")) {
-      document.querySelector(".card2").classList.toggle("flip");
-    }
-    if (event.target.classList.contains("c3")) {
-      document.querySelector(".card3").classList.toggle("flip");
-    }
-    if (event.target.classList.contains("c4")) {
-      document.querySelector(".card4").classList.toggle("flip");
-    }
-    if (event.target.classList.contains("c5")) {
-      document.querySelector(".card5").classList.toggle("flip");
-    }
-    if (event.target.classList.contains("c6")) {
-      document.querySelector(".card6").classList.toggle("flip");
-    }
-    if (event.target.classList.contains("c7")) {
-      document.querySelector(".card7").classList.toggle("flip");
-    }
-    if (event.target.classList.contains("c8")) {
-      document.querySelector(".card8").classList.toggle("flip");
-    }
-    if (event.target.classList.contains("c9")) {
-      document.querySelector(".card9").classList.toggle("flip");
-    }
-    if (event.target.classList.contains("c10")) {
-      document.querySelector(".card10").classList.toggle("flip");
-    }
+  }
 }
