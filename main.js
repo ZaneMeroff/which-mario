@@ -13,11 +13,7 @@ var p2span = document.querySelector(".p2-span");
 var cardArea = document.querySelector(".card-area");
 var p1name = document.querySelector(".p1-name");
 var p2name = document.querySelector(".p2-name");
-var cardArea = document.querySelector(".card-area");
-var p1Score = document.querySelector(".p1-score");
 var player1Matches = 0;
-
-p1Score = player1Matches;
 
 var pcard1 = new Card ({cardId: 0, matchId:"a", imageFront:"./images/card_01.png"});
 var pcard2 = new Card ({cardId: 1, matchId:"b", imageFront:"./images/card_02.png"});
@@ -33,13 +29,13 @@ var deckOfCards = [pcard1, pcard2, pcard3, pcard4, pcard5, pcard6, pcard7, pcard
 
 var deck = new Deck(deckOfCards);
 
-window.onload = firstThing();
+window.onload = onPageLoad();
 
 cardArea.addEventListener("click", buttonConditionals);
 playGameButton.addEventListener("click", advanceToRulesScreen);
 playGameButton2.addEventListener("click", advanceToGameBoard);
 
-function firstThing() {
+function onPageLoad() {
   rulesScreen.classList.add("hidden");
   gamePlayContainer.classList.add("hidden");
   p1ErrorMessage.classList.add("hidden");
@@ -86,8 +82,10 @@ function createCardsOnDOM() {
 
 function checkIfCardsMatch() {
   if (deck.selectedCards[0].matchId === deck.selectedCards[1].matchId) {
+    player1Matches += 1;
     return true;
   } else {
+    // pause for 3 seconds then flip back
     return false;
   }
 }
@@ -107,7 +105,6 @@ function moveToSelectedCards(target) {
 }
 
 function buttonConditionals(event) {
-// debugger;
 if (deck.selectedCards.length === 2) {
   if (checkIfCardsMatch()) {
     makeMatchingCardsDissapear();
@@ -119,26 +116,32 @@ if (deck.selectedCards.length === 2) {
       document.querySelector(`.card${i}`).classList.toggle("flip");
     }
   }
-
-  console.log(deck.cards);
 }
 
+// function checkIfYouWon() {
+//   if (deck.matchedCards.length === 10) {
+//     document.querySelector(".winner-message").classList.remove("hidden");
+//   } else {
+//     return;
+//   }
+// }
+
 function makeMatchingCardsDissapear() {
-  // add +1 point to scoreboard
   var target = deck.selectedCards[0].matchId;
   for (var i = 0; i < deck.cards.length; i++) {
     if (deck.cards[i].matchId === target) {
        var cardId = deck.cards[i].cardId;
        document.querySelector(`.card${cardId}`).classList.add("hidden");
        deck.matchedCards.push(deck.cards[i]);
+       upDateP1Score();
     }
   }
   deck.selectedCards = [];
-  displayYouWin();
 }
 
 function displayYouWin() {
   if (deck.matchedCards.length === deck.cards.length) {
     alert("YOU WIN!");
+    // document.querySelector(".winner-message").classList.remove("hidden");
   }
 }

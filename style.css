@@ -157,6 +157,17 @@ section {
   padding: 6%;
 }
 
+.winner-message {
+  position: absolute;
+  z-index: 2;
+  top: 40%;
+  width: 100%;
+  text-transform: uppercase;
+  background-color: rgba(255, 255, 0, 0.9);
+  font-size: 400%;
+  text-align: center;
+}
+
 .card-area {
   perspective: 1000px;
   display: grid;
@@ -240,11 +251,11 @@ section {
 
 .card-face,
 .card-back {
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   padding: 5px;
   position: absolute;
-  border-radius: 2px;
+  border-radius: 25px;
   backface-visibility: hidden;
 }
 
