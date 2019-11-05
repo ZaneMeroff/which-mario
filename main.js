@@ -15,6 +15,10 @@ var p1name = document.querySelector(".p1-name");
 var p2name = document.querySelector(".p2-name");
 var player1Matches = 0;
 
+var player1Time = Date.now();
+var d = new Date();
+var n = d.getMinutes();
+
 var pcard1 = new Card ({cardId: 0, matchId:"a", imageFront:"./images/card_01.png"});
 var pcard2 = new Card ({cardId: 1, matchId:"b", imageFront:"./images/card_02.png"});
 var pcard3 = new Card ({cardId: 2, matchId:"c", imageFront:"./images/card_03.png"});
@@ -60,7 +64,6 @@ function advanceToRulesScreen() {
 
 function advanceToGameBoard() {
   p1name.innerHTML = inputPlayer1.value;
-  p2name.innerHTML = inputPlayer2.value;
   rulesScreen.classList.add("hidden");
   gamePlayContainer.classList.remove("hidden");
   header.classList.add("hidden");
@@ -90,7 +93,8 @@ function checkIfCardsMatch() {
     player1Matches += 1;
     return true;
   } else {
-    // pause for 3 seconds then flip back
+    setTimeout(() => {
+    }, 3000);
     return false;
   }
 }
@@ -123,14 +127,6 @@ if (deck.selectedCards.length === 2) {
   }
 }
 
-// function checkIfYouWon() {
-//   if (deck.matchedCards.length === 10) {
-//     document.querySelector(".winner-message").classList.remove("hidden");
-//   } else {
-//     return;
-//   }
-// }
-
 function makeMatchingCardsDissapear() {
   var target = deck.selectedCards[0].matchId;
   for (var i = 0; i < deck.cards.length; i++) {
@@ -148,5 +144,11 @@ function makeMatchingCardsDissapear() {
 function displayYouWin() {
   if (deck.matchedCards.length === deck.cards.length) {
     document.querySelector(".winner-message").classList.remove("hidden");
+    // var timeOfStart = player1Time;
+    // var time = (player1Time + Date.now());
+    // var totalTime = (time - timeOfStart);
   }
 }
+
+// setTimeout(() => {
+// }, 1500);
