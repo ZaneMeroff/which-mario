@@ -40,6 +40,11 @@ function onPageLoad() {
   gamePlayContainer.classList.add("hidden");
   p1ErrorMessage.classList.add("hidden");
   playGameButton.classList.add("disabled");
+  upDateP1Score();
+}
+
+function upDateP1Score() {
+  document.querySelector(".p1-score").innerHTML = player1Matches;
 }
 
 function advanceToRulesScreen() {
@@ -134,6 +139,7 @@ function makeMatchingCardsDissapear() {
        document.querySelector(`.card${cardId}`).classList.add("hidden");
        deck.matchedCards.push(deck.cards[i]);
        upDateP1Score();
+       displayYouWin();
     }
   }
   deck.selectedCards = [];
@@ -141,7 +147,6 @@ function makeMatchingCardsDissapear() {
 
 function displayYouWin() {
   if (deck.matchedCards.length === deck.cards.length) {
-    alert("YOU WIN!");
-    // document.querySelector(".winner-message").classList.remove("hidden");
+    document.querySelector(".winner-message").classList.remove("hidden");
   }
 }
