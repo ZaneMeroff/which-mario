@@ -40,6 +40,11 @@ function onPageLoad() {
   gamePlayContainer.classList.add("hidden");
   p1ErrorMessage.classList.add("hidden");
   playGameButton.classList.add("disabled");
+  upDateP1Score();
+}
+
+function upDateP1Score() {
+  document.querySelector(".p1-score").innerHTML = player1Matches;
 }
 
 function advanceToRulesScreen() {
