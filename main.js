@@ -40,7 +40,6 @@ function onPageLoad() {
   gamePlayContainer.classList.add("hidden");
   p1ErrorMessage.classList.add("hidden");
   playGameButton.classList.add("disabled");
-  upDateP1Score();
 }
 
 function advanceToRulesScreen() {
@@ -81,17 +80,6 @@ function createCardsOnDOM() {
   }
 }
 
-function winnerMessage() {
-  cardArea.innerHTML = `<p class='winner-message'>congratulations!</p>
-  <p class="winner-message">you won!</p>`
-}
-
-
-// UPDATE PLAYER SCORE FUNCTION--------------
-function upDateP1Score() {
-    document.querySelector(".p1-score").innerHTML = player1Matches;
-  }
-
 function checkIfCardsMatch() {
   if (deck.selectedCards[0].matchId === deck.selectedCards[1].matchId) {
     player1Matches += 1;
@@ -130,6 +118,12 @@ if (deck.selectedCards.length === 2) {
   }
 }
 
+function checkIfYouWon() {
+  if (deck.matchedCards.length === 10) {
+    document.querySelector(".winner-message").classList.remove("hidden");
+  }
+}
+
 function makeMatchingCardsDissapear() {
   var target = deck.selectedCards[0].matchId;
   for (var i = 0; i < deck.cards.length; i++) {
@@ -141,7 +135,6 @@ function makeMatchingCardsDissapear() {
     }
   }
   deck.selectedCards = [];
-  displayYouWin();
 }
 
 function displayYouWin() {
