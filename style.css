@@ -240,11 +240,11 @@ section {
 
 .card-face,
 .card-back {
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   padding: 5px;
   position: absolute;
-  border-radius: 2px;
+  border-radius: 25px;
   backface-visibility: hidden;
 }
 
