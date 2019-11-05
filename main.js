@@ -14,6 +14,11 @@ var cardArea = document.querySelector(".card-area");
 var p1name = document.querySelector(".p1-name");
 var p2name = document.querySelector(".p2-name");
 var cardArea = document.querySelector(".card-area");
+var p1Score = document.querySelector(".p1-score");
+var player1Matches = 0;
+
+p1Score = player1Matches;
+
 var pcard1 = new Card ({cardId: 0, matchId:"a", imageFront:"./images/card_01.png"});
 var pcard2 = new Card ({cardId: 1, matchId:"b", imageFront:"./images/card_02.png"});
 var pcard3 = new Card ({cardId: 2, matchId:"c", imageFront:"./images/card_03.png"});
@@ -28,14 +33,13 @@ var deckOfCards = [pcard1, pcard2, pcard3, pcard4, pcard5, pcard6, pcard7, pcard
 
 var deck = new Deck(deckOfCards);
 
-
-window.onload = whenIStart();
+window.onload = firstThing();
 
 cardArea.addEventListener("click", buttonConditionals);
 playGameButton.addEventListener("click", advanceToRulesScreen);
 playGameButton2.addEventListener("click", advanceToGameBoard);
 
-function whenIStart() {
+function firstThing() {
   rulesScreen.classList.add("hidden");
   gamePlayContainer.classList.add("hidden");
   p1ErrorMessage.classList.add("hidden");
@@ -62,6 +66,14 @@ function advanceToGameBoard() {
   createCardsOnDOM();
 }
 
+// function instanciateCards() {
+//   var idNames = [ "a", "a", "b", "b", "c", "c", "d", "d", "e", "e"];
+//   for (var i = 0; i < data.length; i++) {
+//     var card = new Card(idNames[i], i);
+//     deck
+//   }
+// }
+
 function createCardsOnDOM() {
   for (var i = 0; i <= 9; i++) {
   document.querySelector(".card-area").innerHTML += `
@@ -72,28 +84,61 @@ function createCardsOnDOM() {
   }
 }
 
-function moveToSelectedCards() {
-  event.target.closest(".card");
-}
-
-function startGame() {
-  // for loop deck data
-  // instaciate card for each [i] in loop
-  // declare var for array of cards and pass into deck
-}
-
 function checkIfCardsMatch() {
-  // find a way to check if card is facing up
-  // if 2 cards are facing up, check to see if they match
-  // if they match, make them dissapear
-  // Player 1s match score should increase by +1
+  if (deck.selectedCards[0].matchId === deck.selectedCards[1].matchId) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function moveToSelectedCards(target) {
+  if (deck.selectedCards.length >= 2) {
+    deck.selectedCards = [];
+    for (var i = 0; i < deck.cards.length; i++) {
+    document.querySelector(`.card${i}`).classList.remove("flip");
+    }
+  }
+  for (var i = 0; i < deck.cards.length; i++) {
+    if (deck.cards[i].cardId === target) {
+    deck.selectedCards.push(deck.cards[i]);
+    }
+  }
 }
 
 function buttonConditionals(event) {
+// debugger;
+if (deck.selectedCards.length === 2) {
+  if (checkIfCardsMatch()) {
+    makeMatchingCardsDissapear();
+  }
+}
   for (var i = 0; i < deck.cards.length; i++) {
-
     if (event.target.classList.contains(`c${i}`)) {
+      moveToSelectedCards(i);
       document.querySelector(`.card${i}`).classList.toggle("flip");
     }
+  }
+
+  console.log(deck.cards);
+}
+
+function makeMatchingCardsDissapear() {
+  // add +1 point to scoreboard
+  var target = deck.selectedCards[0].matchId;
+  for (var i = 0; i < deck.cards.length; i++) {
+    if (deck.cards[i].matchId === target) {
+       var cardId = deck.cards[i].cardId;
+       document.querySelector(`.card${cardId}`).classList.add("hidden");
+       deck.matchedCards.push(deck.cards[i]);
+    }
+  }
+  deck.selectedCards = [];
+  displayYouWin();
+}
+
+function displayYouWin() {
+  if (deck.matchedCards.length === deck.cards.length) {
+    alert("YOU WIN!");
   }
 }
