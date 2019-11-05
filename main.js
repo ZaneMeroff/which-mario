@@ -63,31 +63,13 @@ function advanceToGameBoard() {
 }
 
 function createCardsOnDOM() {
-
-
-  for (var i = 0; i < 3; i++) {
-  document.querySelector(".row-1").innerHTML += `
+  for (var i = 0; i <= 9; i++) {
+  document.querySelector(".card-area").innerHTML += `
    <div class="card card${deckOfCards[i].cardId}">
      <img class ="c${deckOfCards[i].cardId} card-back" src="./images/mario_card_back.jpg" alt="mario bricks">
      <img class ="c${deckOfCards[i].cardId} card-face" src=${deckOfCards[i].imageFront} alt="blue flower">
    </div>`
-   }
-
-   for (var i = 3; i < 7; i++) {
-   document.querySelector(".row-2").innerHTML += `
-    <div class="card card${deckOfCards[i].cardId}">
-      <img class ="c${deckOfCards[i].cardId} card-back" src="./images/mario_card_back.jpg" alt="mario bricks">
-      <img class ="c${deckOfCards[i].cardId} card-face" src=${deckOfCards[i].imageFront} alt="blue flower">
-    </div>`
-   }
-
-    for (var i = 7; i <= 9; i++) {
-    document.querySelector(".row-3").innerHTML += `
-     <div class="card card${deckOfCards[i].cardId}">
-       <img class ="c${deckOfCards[i].cardId} card-back" src="./images/mario_card_back.jpg" alt="mario bricks">
-       <img class ="c${deckOfCards[i].cardId} card-face" src=${deckOfCards[i].imageFront} alt="blue flower">
-     </div>`
-   }
+  }
 }
 
 function moveToSelectedCards() {
