@@ -14,17 +14,32 @@ var cardArea = document.querySelector(".card-area");
 var p1name = document.querySelector(".p1-name");
 var p2name = document.querySelector(".p2-name");
 var cardArea = document.querySelector(".card-area");
+var p1Score = document.querySelector(".p1-score");
+var player1Matches = 0;
 
-var deckOfCards = [];
-// var card1 = ({name: 'card1', matchId: 01, isMatched: false, imageFront: url(), imageBack:()})
+p1Score = player1Matches;
 
-window.onload = onLoad();
+var pcard1 = new Card ({cardId: 0, matchId:"a", imageFront:"./images/card_01.png"});
+var pcard2 = new Card ({cardId: 1, matchId:"b", imageFront:"./images/card_02.png"});
+var pcard3 = new Card ({cardId: 2, matchId:"c", imageFront:"./images/card_03.png"});
+var pcard4 = new Card ({cardId: 3, matchId:"d", imageFront:"./images/card_04.png"});
+var pcard5 = new Card ({cardId: 4, matchId:"e", imageFront:"./images/card_05.png"});
+var pcard6 = new Card ({cardId: 5, matchId:"a", imageFront:"./images/card_01.png"});
+var pcard7 = new Card ({cardId: 6, matchId:"b", imageFront:"./images/card_02.png"});
+var pcard8 = new Card ({cardId: 7, matchId:"c", imageFront:"./images/card_03.png"});
+var pcard9 = new Card ({cardId: 8, matchId:"d", imageFront:"./images/card_04.png"});
+var pcard10 = new Card ({cardId: 9, matchId:"e", imageFront:"./images/card_05.png"});
+var deckOfCards = [pcard1, pcard2, pcard3, pcard4, pcard5, pcard6, pcard7, pcard8, pcard9, pcard10];
+
+var deck = new Deck(deckOfCards);
+
+window.onload = firstThing();
 
 cardArea.addEventListener("click", buttonConditionals);
 playGameButton.addEventListener("click", advanceToRulesScreen);
 playGameButton2.addEventListener("click", advanceToGameBoard);
 
-function onLoad() {
+function firstThing() {
   rulesScreen.classList.add("hidden");
   gamePlayContainer.classList.add("hidden");
   p1ErrorMessage.classList.add("hidden");
@@ -48,77 +63,82 @@ function advanceToGameBoard() {
   rulesScreen.classList.add("hidden");
   gamePlayContainer.classList.remove("hidden");
   header.classList.add("hidden");
-  // createCardsOnDOM();
+  createCardsOnDOM();
 }
 
-function createInstance() {
-  var pastIdea = new Idea(titleInput.value, bodyInput.value);
-  ideaLog.push(pastIdea);
-  return pastIdea;
-}
-
-function createInstance() {
-  var pastIdea = new Idea(titleInput.value, bodyInput.value);
-  ideaLog.push(pastIdea);
-  return pastIdea;
-}
+// function instanciateCards() {
+//   var idNames = [ "a", "a", "b", "b", "c", "c", "d", "d", "e", "e"];
+//   for (var i = 0; i < data.length; i++) {
+//     var card = new Card(idNames[i], i);
+//     deck
+//   }
+// }
 
 function createCardsOnDOM() {
-  var pcard1 = new Card ({cardId: 01, imageFront:"./images/card_01.png"});
-  var pcard2 = new Card ({cardId: 02, imageFront:"./images/card_02.png"});
-  var pcard3 = new Card ({cardId: 03, imageFront:"./images/card_03.png"});
-  document.querySelector(".card-spot-1").insertAdjacentHTML('beforeend',
-   `
-   <div class="card card1" data="card1">
-     <img class ="c1 card-back" src="./images/mario_card_back.jpg" alt="mario bricks">
-     <img class ="c1 card-face" src="./images/card_01.png" alt="blue flower">
-   </div>
-   `
-)
-}
-
-function startGame() {
-  // for loop deck data
-  // instaciate card for each [i] in loop
-  // declare var for array of cards and pass into deck
+  for (var i = 0; i <= 9; i++) {
+  document.querySelector(".card-area").innerHTML += `
+   <div class="card card${deckOfCards[i].cardId}">
+     <img class ="c${deckOfCards[i].cardId} card-back" src="./images/mario_card_back.jpg" alt="mario bricks">
+     <img class ="c${deckOfCards[i].cardId} card-face" src=${deckOfCards[i].imageFront} alt="blue flower">
+   </div>`
+  }
 }
 
 function checkIfCardsMatch() {
-  // find a way to check if card is facing up
-  // if 2 cards are facing up, check to see if they match
-  // if they match, make them dissapear
-  // Player 1s match score should increase by +1
+  if (deck.selectedCards[0].matchId === deck.selectedCards[1].matchId) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function moveToSelectedCards(target) {
+  if (deck.selectedCards.length >= 2) {
+    deck.selectedCards = [];
+    for (var i = 0; i < deck.cards.length; i++) {
+    document.querySelector(`.card${i}`).classList.remove("flip");
+    }
+  }
+  for (var i = 0; i < deck.cards.length; i++) {
+    if (deck.cards[i].cardId === target) {
+    deck.selectedCards.push(deck.cards[i]);
+    }
+  }
 }
 
 function buttonConditionals(event) {
-    if (event.target.classList.contains("c1")) {
-      document.querySelector(".card1").classList.toggle("flip");
+// debugger;
+if (deck.selectedCards.length === 2) {
+  if (checkIfCardsMatch()) {
+    makeMatchingCardsDissapear();
+  }
+}
+  for (var i = 0; i < deck.cards.length; i++) {
+    if (event.target.classList.contains(`c${i}`)) {
+      moveToSelectedCards(i);
+      document.querySelector(`.card${i}`).classList.toggle("flip");
     }
-    if (event.target.classList.contains("c2")) {
-      document.querySelector(".card2").classList.toggle("flip");
+  }
+
+  console.log(deck.cards);
+}
+
+function makeMatchingCardsDissapear() {
+  // add +1 point to scoreboard
+  var target = deck.selectedCards[0].matchId;
+  for (var i = 0; i < deck.cards.length; i++) {
+    if (deck.cards[i].matchId === target) {
+       var cardId = deck.cards[i].cardId;
+       document.querySelector(`.card${cardId}`).classList.add("hidden");
+       deck.matchedCards.push(deck.cards[i]);
     }
-    if (event.target.classList.contains("c3")) {
-      document.querySelector(".card3").classList.toggle("flip");
-    }
-    if (event.target.classList.contains("c4")) {
-      document.querySelector(".card4").classList.toggle("flip");
-    }
-    if (event.target.classList.contains("c5")) {
-      document.querySelector(".card5").classList.toggle("flip");
-    }
-    if (event.target.classList.contains("c6")) {
-      document.querySelector(".card6").classList.toggle("flip");
-    }
-    if (event.target.classList.contains("c7")) {
-      document.querySelector(".card7").classList.toggle("flip");
-    }
-    if (event.target.classList.contains("c8")) {
-      document.querySelector(".card8").classList.toggle("flip");
-    }
-    if (event.target.classList.contains("c9")) {
-      document.querySelector(".card9").classList.toggle("flip");
-    }
-    if (event.target.classList.contains("c10")) {
-      document.querySelector(".card10").classList.toggle("flip");
-    }
+  }
+  deck.selectedCards = [];
+  displayYouWin();
+}
+
+function displayYouWin() {
+  if (deck.matchedCards.length === deck.cards.length) {
+    alert("YOU WIN!");
+  }
 }

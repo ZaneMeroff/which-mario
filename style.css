@@ -159,18 +159,53 @@ section {
 
 .card-area {
   perspective: 1000px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    ". one . two . three ."
+    "four . five . six . seven"
+    ". eight . nine . ten .";
 }
 
-.row-1,
-.row-2,
-.row-3 {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  height: 33.33%;
-  padding-top: 2%;
+.card0 {
+  grid-area: one;
+}
+
+.card1 {
+  grid-area: two;
+}
+
+.card2 {
+  grid-area: three;
+}
+
+.card3 {
+  grid-area: four;
+}
+
+.card4 {
+  grid-area: five;
+}
+
+.card5 {
+  grid-area: six;
+}
+
+.card6 {
+  grid-area: seven;
+}
+
+.card7 {
+  grid-area: eight;
+}
+
+.card8 {
+  grid-area: nine;
+}
+
+.card9 {
+  grid-area: ten;
 }
 
 .p1-error-message {
@@ -205,8 +240,8 @@ section {
 
 .card-face,
 .card-back {
-  width: 170px;
-  height: 200px;
+  width: 120px;
+  height: 120px;
   padding: 5px;
   position: absolute;
   border-radius: 2px;
