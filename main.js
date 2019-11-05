@@ -14,10 +14,8 @@ var cardArea = document.querySelector(".card-area");
 var p1name = document.querySelector(".p1-name");
 var p2name = document.querySelector(".p2-name");
 var player1Matches = 0;
-
-var player1Time = Date.now();
-var d = new Date();
-var n = d.getMinutes();
+var startTime = Date.now();
+var winningMessage = "";
 
 var pcard1 = new Card ({cardId: 0, matchId:"a", imageFront:"./images/card_01.png"});
 var pcard2 = new Card ({cardId: 1, matchId:"b", imageFront:"./images/card_02.png"});
@@ -58,7 +56,6 @@ function advanceToRulesScreen() {
     addPlayersScreen.classList.add("hidden");
     rulesScreen.classList.remove("hidden");
     p1span.innerHTML = inputPlayer1.value;
-    p2span.innerHTML = inputPlayer2.value;
   }
 }
 
@@ -132,7 +129,7 @@ function makeMatchingCardsDissapear() {
   for (var i = 0; i < deck.cards.length; i++) {
     if (deck.cards[i].matchId === target) {
        var cardId = deck.cards[i].cardId;
-       document.querySelector(`.card${cardId}`).classList.add("hidden");
+       document.querySelector(`.card${cardId}`).classList.add("hidden-fade");
        deck.matchedCards.push(deck.cards[i]);
        upDateP1Score();
        displayYouWin();
@@ -141,14 +138,19 @@ function makeMatchingCardsDissapear() {
   deck.selectedCards = [];
 }
 
-function displayYouWin() {
-  if (deck.matchedCards.length === deck.cards.length) {
-    document.querySelector(".winner-message").classList.remove("hidden");
-    // var timeOfStart = player1Time;
-    // var time = (player1Time + Date.now());
-    // var totalTime = (time - timeOfStart);
-  }
+function timeCheck() {
+  var endTime = Date.now();
+  var totalTime = (endTime - startTime) / 1000;
+  var min = Math.floor(totalTime / 60);
+  var sec = Math.round (totalTime % 60);
+  winningMessage = `It took you ${min}mins and ${sec}secs to finish!`;
 }
 
-// setTimeout(() => {
-// }, 1500);
+function displayYouWin() {
+  if (deck.matchedCards.length === deck.cards.length) {
+    document.querySelector(".card-area").innerHTML = `
+    <p class="winner-message">You Win!</p>
+    <p class="winner-message">${winningMessage}</p>`
+    timeCheck();
+  }
+}
