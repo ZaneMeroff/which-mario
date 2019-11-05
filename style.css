@@ -46,7 +46,7 @@ button {
 }
 
 button:hover {
-  background-color: #189001;
+  background-color: #27CC08;
   transform: scale(.98);
   transition: transform .5s;
 }
@@ -170,6 +170,7 @@ section {
 
 .card-area {
   perspective: 1000px;
+  padding: 6%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: auto;
@@ -232,12 +233,16 @@ section {
 }
 
 .card {
-  width: 25%;
-  height: 25%;
+  width: 100%;
+  height: 100%;
   position: relative;
   transform: scale(1);
   transform-style: preserve-3d;
   transition: transform .5s;
+}
+
+.card:hover {
+  cursor: pointer;
 }
 
 .card:active {
@@ -251,8 +256,8 @@ section {
 
 .card-face,
 .card-back {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 150px;
   padding: 5px;
   position: absolute;
   border-radius: 25px;
