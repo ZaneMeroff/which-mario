@@ -139,6 +139,7 @@ function makeMatchingCardsDissapear() {
        document.querySelector(`.card${cardId}`).classList.add("hidden");
        deck.matchedCards.push(deck.cards[i]);
        upDateP1Score();
+       displayYouWin();
     }
   }
   deck.selectedCards = [];
@@ -146,7 +147,6 @@ function makeMatchingCardsDissapear() {
 
 function displayYouWin() {
   if (deck.matchedCards.length === deck.cards.length) {
-    alert("YOU WIN!");
-    // document.querySelector(".winner-message").classList.remove("hidden");
+    document.querySelector(".winner-message").classList.remove("hidden");
   }
 }
