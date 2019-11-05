@@ -118,11 +118,13 @@ if (deck.selectedCards.length === 2) {
   }
 }
 
-function checkIfYouWon() {
-  if (deck.matchedCards.length === 10) {
-    document.querySelector(".winner-message").classList.remove("hidden");
-  }
-}
+// function checkIfYouWon() {
+//   if (deck.matchedCards.length === 10) {
+//     document.querySelector(".winner-message").classList.remove("hidden");
+//   } else {
+//     return;
+//   }
+// }
 
 function makeMatchingCardsDissapear() {
   var target = deck.selectedCards[0].matchId;
@@ -140,5 +142,6 @@ function makeMatchingCardsDissapear() {
 function displayYouWin() {
   if (deck.matchedCards.length === deck.cards.length) {
     alert("YOU WIN!");
+    // document.querySelector(".winner-message").classList.remove("hidden");
   }
 }
