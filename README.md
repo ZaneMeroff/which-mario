@@ -8,13 +8,15 @@ The project was a card matching memory game where one player would first be aske
 
 ### Features Coming Soon!
 I was able to store each players name and time into the local storage. In the future, I plan to use this information to generate a scoreboard with the top five players best scores that will be stored within the user’s browser, even after refreshing the page. I also intend to make the game functional for multiplayer in the future!
-
+MY
 ### My Comp Screenshots
 ![my_comp_1](https://user-images.githubusercontent.com/53405028/68272713-b80cf880-0021-11ea-878a-58b84473891a.png)
 
 ![my_comp_2](https://user-images.githubusercontent.com/53405028/68272720-be02d980-0021-11ea-885d-f9deea3afbf9.png)
 
 ![my_comp_3](https://user-images.githubusercontent.com/53405028/68272730-c4915100-0021-11ea-99e7-e4304f9cdfb7.png)
+
+![my_comp_4](https://user-images.githubusercontent.com/53405028/68273553-fe635700-0023-11ea-9b33-206bcaa50afd.png)
 
 ### Example Comp Screenshots
 ![example_comp_1](https://user-images.githubusercontent.com/53405028/68273034-9c562200-0022-11ea-8c6e-d26bbfd1b87a.png)
