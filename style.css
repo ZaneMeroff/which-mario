@@ -112,6 +112,7 @@ label {
 .welcome-players-text {
   margin-top: 5%;
   font-size: 150%;
+  text-transform: capitalize;
 }
 
 .play-game-button2 {
@@ -133,10 +134,10 @@ label {
   font-size: 120%
 }
 
-.p1-name,
-.p2-name {
+.p1-name {
   font-size: 150%;
   font-weight: bold;
+  text-transform: capitalize;
 }
 
 .p1-score,
@@ -157,15 +158,21 @@ section {
   padding: 6%;
 }
 
-.winner-message {
+.winner-message-l1,
+.winner-message-l2 {
   position: absolute;
   z-index: 2;
-  top: 40%;
+  top: 30%;
   width: 100%;
   text-transform: uppercase;
   background-color: rgba(255, 255, 0, 0.9);
   font-size: 300%;
   text-align: center;
+}
+
+.winner-message-l2 {
+  top: 42%;
+  font-size: 180%;
 }
 
 .card-area {
