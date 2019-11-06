@@ -1,23 +1,27 @@
+// Gloval Variables
 var addPlayersScreen = document.querySelector(".add-players-screen");
 var rulesScreen = document.querySelector(".rules-screen");
 var header = document.querySelector("header");
 var gamePlayContainer = document.querySelector("section");
 var inputPlayer1 = document.querySelector(".input-player-1");
-var inputPlayer2 = document.querySelector(".input-player-2");
 var playGameButton = document.querySelector(".play-game-button");
 var p1ErrorMessage = document.querySelector(".p1-error-message");
 var playGameButton2 = document.querySelector(".play-game-button2");
-var main = document.querySelector("main");
-var p1span = document.querySelector(".p1-span");
-var p2span = document.querySelector(".p2-span");
-var cardArea = document.querySelector(".card-area");
-var p1name = document.querySelector(".p1-name");
-var p2name = document.querySelector(".p2-name");
-var startNewGameButton = document.querySelector(".start-new-game-button");
 var player1Matches = 0;
 var winningMessage = "";
 var startTime = 0;
+var deck = new Deck(instanciateCards());
 
+// On Window Load
+window.onload = onPageLoad();
+
+// Event Listeners
+document.querySelector(".start-new-game-button").addEventListener("click", startNewGame);
+document.querySelector(".card-area").addEventListener("click", buttonConditionals);
+playGameButton.addEventListener("click", advanceToRulesScreen);
+playGameButton2.addEventListener("click", advanceToGameBoard);
+
+// Main Functions
 function instanciateCards() {
   var deckOfCards = [];
   var idNames = [ "a", "a", "b", "b", "c", "c", "d", "d", "e", "e"];
@@ -27,15 +31,6 @@ function instanciateCards() {
   }
   return deckOfCards;
 }
-
-var deck = new Deck(instanciateCards());
-
-window.onload = onPageLoad();
-
-startNewGameButton.addEventListener("click", startNewGame);
-cardArea.addEventListener("click", buttonConditionals);
-playGameButton.addEventListener("click", advanceToRulesScreen);
-playGameButton2.addEventListener("click", advanceToGameBoard);
 
 function startNewGame() {
   deck = new Deck(instanciateCards());
@@ -63,13 +58,13 @@ function advanceToRulesScreen() {
   } else {
     addPlayersScreen.classList.add("hidden");
     rulesScreen.classList.remove("hidden");
-    p1span.innerHTML = inputPlayer1.value;
+    document.querySelector(".p1-span").innerHTML = inputPlayer1.value;
   }
 }
 
 function advanceToGameBoard() {
   startTime = Date.now();
-  p1name.innerHTML = inputPlayer1.value;
+  document.querySelector(".p1-name").innerHTML = inputPlayer1.value;
   rulesScreen.classList.add("hidden");
   gamePlayContainer.classList.remove("hidden");
   header.classList.add("hidden");
@@ -87,18 +82,10 @@ function createCardsOnDOM() {
   }
 }
 
-function checkIfCardsMatch() {
-  if (deck.selectedCards[0].matchId === deck.selectedCards[1].matchId) {
-    player1Matches += 1;
-    return true;
-  } else {
-    return false;
-  }
-}
-
 function checkResetBoard() {
   if (deck.selectedCards.length >= 2) {
-    if (checkIfCardsMatch()) {
+    if (deck.checkIfCardsMatch()) {
+      player1Matches += 1;
       setTimeout(makeMatchingCardsDissapear, 2000);
     } else {
       setTimeout(resetBoard, 2000);
@@ -145,12 +132,6 @@ function makeMatchingCardsDissapear() {
     }
   }
   deck.selectedCards = [];
-}
-
-function timeOut(timeInMiliseconds) {
-   var time = new Date().getTime();
-   while (time + timeInMiliseconds >= new Date().getTime()) {
-   }
 }
 
 function timeCheck() {
