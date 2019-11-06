@@ -14,7 +14,7 @@ var cardArea = document.querySelector(".card-area");
 var p1name = document.querySelector(".p1-name");
 var p2name = document.querySelector(".p2-name");
 var player1Matches = 0;
-var startTime = Date.now();
+var startTime = 0;
 var winningMessage = "";
 
 var pcard1 = new Card ({cardId: 0, matchId:"a", imageFront:"./images/card_01.png"});
@@ -60,6 +60,7 @@ function advanceToRulesScreen() {
 }
 
 function advanceToGameBoard() {
+  startTime = Date.now();
   p1name.innerHTML = inputPlayer1.value;
   rulesScreen.classList.add("hidden");
   gamePlayContainer.classList.remove("hidden");
@@ -143,14 +144,14 @@ function timeCheck() {
   var totalTime = (endTime - startTime) / 1000;
   var min = Math.floor(totalTime / 60);
   var sec = Math.round (totalTime % 60);
-  winningMessage = `It took you ${min}mins and ${sec}secs to finish!`;
+  winningMessage = `You finished in ${min}min(s) & ${sec}sec(s)!`;
 }
 
 function displayYouWin() {
   if (deck.matchedCards.length === deck.cards.length) {
-    document.querySelector(".card-area").innerHTML = `
-    <p class="winner-message">You Win!</p>
-    <p class="winner-message">${winningMessage}</p>`
     timeCheck();
+    document.querySelector(".card-area").innerHTML = `
+    <p class="winner-message-l1">you win ${inputPlayer1.value}!</p>
+    <p class="winner-message-l2">${winningMessage}</p>`
   }
 }
