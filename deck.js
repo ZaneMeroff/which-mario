@@ -4,7 +4,6 @@ class Deck {
     this.shuffle();
     this.matchedCards = [];
     this.selectedCards = [];
-    this.matches = 0;
   }
 
   shuffle() {
@@ -18,12 +17,16 @@ class Deck {
     return this.cards;
   }
 
-  checkSelectedCards() {
-
+  checkIfCardsMatch() {
+    if (this.selectedCards[0].matchId === this.selectedCards[1].matchId) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   moveToMatched() {
-    
+     this.matchedCards.push(this.cards[i]);
   }
 
 }
