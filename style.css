@@ -72,13 +72,25 @@ input {
   border: 4px solid yellow;
 }
 
-.play-game-button {
+.play-game-button,
+.start-new-game-button {
   margin-top: 29%;
   height: 60px;
   width: 50%;
   font-size: 120%;
   border-radius: 30px;
   text-transform: uppercase;
+}
+
+.start-new-game-button {
+  cursor: pointer;
+  height: 100px;
+  width: 100px;
+  background-color: #1CAB00;
+  border: 3px solid yellow;
+  color: white;
+  font-weight: bolder;
+  /* need to refactor this button ----------------- */
 }
 
 .play-game-button-container {
@@ -175,6 +187,12 @@ section {
   font-size: 180%;
 }
 
+.start-new-game-button {
+
+  height: 300px
+  width: 300px;
+}
+
 .card-area {
   perspective: 1000px;
   padding: 6%;
@@ -187,43 +205,43 @@ section {
     ". eight . nine . ten .";
 }
 
-.card0 {
+.grid0 {
   grid-area: one;
 }
 
-.card1 {
+.grid1 {
   grid-area: two;
 }
 
-.card2 {
+.grid2 {
   grid-area: three;
 }
 
-.card3 {
+.grid3 {
   grid-area: four;
 }
 
-.card4 {
+.grid4 {
   grid-area: five;
 }
 
-.card5 {
+.grid5 {
   grid-area: six;
 }
 
-.card6 {
+.grid6 {
   grid-area: seven;
 }
 
-.card7 {
+.grid7 {
   grid-area: eight;
 }
 
-.card8 {
+.grid8 {
   grid-area: nine;
 }
 
-.card9 {
+.grid9 {
   grid-area: ten;
 }
 
