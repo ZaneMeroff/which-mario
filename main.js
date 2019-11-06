@@ -17,19 +17,17 @@ var player1Matches = 0;
 var winningMessage = "";
 var startTime = 0;
 
-var pcard1 = new Card ({cardId: 0, matchId:"a", imageFront:"./images/card_01.png"});
-var pcard2 = new Card ({cardId: 1, matchId:"b", imageFront:"./images/card_02.png"});
-var pcard3 = new Card ({cardId: 2, matchId:"c", imageFront:"./images/card_03.png"});
-var pcard4 = new Card ({cardId: 3, matchId:"d", imageFront:"./images/card_04.png"});
-var pcard5 = new Card ({cardId: 4, matchId:"e", imageFront:"./images/card_05.png"});
-var pcard6 = new Card ({cardId: 5, matchId:"a", imageFront:"./images/card_01.png"});
-var pcard7 = new Card ({cardId: 6, matchId:"b", imageFront:"./images/card_02.png"});
-var pcard8 = new Card ({cardId: 7, matchId:"c", imageFront:"./images/card_03.png"});
-var pcard9 = new Card ({cardId: 8, matchId:"d", imageFront:"./images/card_04.png"});
-var pcard10 = new Card ({cardId: 9, matchId:"e", imageFront:"./images/card_05.png"});
-var deckOfCards = [pcard1, pcard2, pcard3, pcard4, pcard5, pcard6, pcard7, pcard8, pcard9, pcard10];
+function instanciateCards() {
+  var deckOfCards = [];
+  var idNames = [ "a", "a", "b", "b", "c", "c", "d", "d", "e", "e"];
+  for (var i = 0; i < idNames.length; i++) {
+    var card = new Card ({cardId:i, matchId:idNames[i], imageFront:`./images/card_0${(Math.floor(i/2)+1)}.png`});
+    deckOfCards.push(card);
+  }
+  return deckOfCards;
+}
 
-var deck = new Deck(deckOfCards);
+var deck = new Deck(instanciateCards());
 
 window.onload = onPageLoad();
 
@@ -68,20 +66,12 @@ function advanceToGameBoard() {
   createCardsOnDOM();
 }
 
-// function instanciateCards() {
-//   var idNames = [ "a", "a", "b", "b", "c", "c", "d", "d", "e", "e"];
-//   for (var i = 0; i < data.length; i++) {
-//     var card = new Card(idNames[i], i);
-//     deck
-//   }
-// }
-
 function createCardsOnDOM() {
-  for (var i = 0; i <= 9; i++) {
+  for (var i = 0; i < deck.cards.length; i++) {
   document.querySelector(".card-area").innerHTML += `
-   <div class="card card${deckOfCards[i].cardId}">
-     <img class ="c${deckOfCards[i].cardId} card-back" src="./images/mario_card_back.jpg" alt="mario bricks">
-     <img class ="c${deckOfCards[i].cardId} card-face" src=${deckOfCards[i].imageFront} alt="blue flower">
+   <div class="card card${deck.cards[i].cardId}">
+     <img class ="c${deck.cards[i].cardId} card-back" src="./images/mario_card_back.jpg" alt="mario bricks">
+     <img class ="c${deck.cards[i].cardId} card-face" src=${deck.cards[i].imageFront} alt="blue flower">
    </div>`
   }
 }
@@ -91,38 +81,45 @@ function checkIfCardsMatch() {
     player1Matches += 1;
     return true;
   } else {
-    setTimeout(() => {
-    }, 3000);
     return false;
   }
 }
 
-function moveToSelectedCards(target) {
+function checkResetBoard() {
   if (deck.selectedCards.length >= 2) {
-    deck.selectedCards = [];
-    for (var i = 0; i < deck.cards.length; i++) {
-    document.querySelector(`.card${i}`).classList.remove("flip");
+    if (checkIfCardsMatch()) {
+      setTimeout(makeMatchingCardsDissapear, 2000);
+    } else {
+      setTimeout(resetBoard, 2000);
     }
   }
+}
+
+function resetBoard() {
+  deck.selectedCards = [];
+  for (var i = 0; i < deck.cards.length; i++) {
+  document.querySelector(`.card${i}`).classList.remove("flip");
+  }
+}
+
+function moveToSelectedCards(target) {
   for (var i = 0; i < deck.cards.length; i++) {
     if (deck.cards[i].cardId === target) {
-    deck.selectedCards.push(deck.cards[i]);
+      if (deck.selectedCards.length === 0 || deck.selectedCards[0].cardId !== target) {
+        deck.selectedCards.push(deck.cards[i]);
+      }
     }
   }
 }
 
 function buttonConditionals(event) {
-if (deck.selectedCards.length === 2) {
-  if (checkIfCardsMatch()) {
-    makeMatchingCardsDissapear();
-  }
-}
   for (var i = 0; i < deck.cards.length; i++) {
     if (event.target.classList.contains(`c${i}`)) {
       moveToSelectedCards(i);
       document.querySelector(`.card${i}`).classList.toggle("flip");
     }
   }
+  checkResetBoard();
 }
 
 function makeMatchingCardsDissapear() {
@@ -130,13 +127,19 @@ function makeMatchingCardsDissapear() {
   for (var i = 0; i < deck.cards.length; i++) {
     if (deck.cards[i].matchId === target) {
        var cardId = deck.cards[i].cardId;
-       document.querySelector(`.card${cardId}`).classList.add("hidden-fade");
+       document.querySelector(`.card${cardId}`).classList.add("hidden");
        deck.matchedCards.push(deck.cards[i]);
        upDateP1Score();
        displayYouWin();
     }
   }
   deck.selectedCards = [];
+}
+
+function timeOut(timeInMiliseconds) {
+   var time = new Date().getTime();
+   while (time + timeInMiliseconds >= new Date().getTime()) {
+   }
 }
 
 function timeCheck() {
