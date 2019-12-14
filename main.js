@@ -1,38 +1,19 @@
-// Gloval Variables
-var addPlayersScreen = document.querySelector(".add-players-screen");
-var rulesScreen = document.querySelector(".rules-screen");
-var header = document.querySelector("header");
-var gamePlayContainer = document.querySelector("section");
-var inputPlayer1 = document.querySelector(".input-player-1");
-var playGameButton = document.querySelector(".play-game-button");
-var p1ErrorMessage = document.querySelector(".p1-error-message");
-var playGameButton2 = document.querySelector(".play-game-button2");
-var player1Matches = 0;
-var winningMessage = "";
-var startTime = 0;
-var deck = new Deck(instanciateCards());
-
-// On Window Load
-window.onload = onPageLoad();
-
-// Event Listeners
-document.querySelector(".start-new-game-button").addEventListener("click", startNewGame);
-document.querySelector(".card-area").addEventListener("click", buttonConditionals);
-playGameButton.addEventListener("click", advanceToRulesScreen);
-playGameButton2.addEventListener("click", advanceToGameBoard);
-
 // Main Functions
-function instanciateCards() {
-  var deckOfCards = [];
-  var idNames = [ "a", "a", "b", "b", "c", "c", "d", "d", "e", "e"];
-  for (var i = 0; i < idNames.length; i++) {
-    var card = new Card ({cardId:i, matchId:idNames[i], imageFront:`./images/card_0${(Math.floor(i/2)+1)}.png`});
+const instanciateCards = () => {
+  let deckOfCards = [];
+  let idNames = [ "a", "a", "b", "b", "c", "c", "d", "d", "e", "e"];
+  for (let i = 0; i < idNames.length; i++) {
+    let card = new Card ({
+      cardId: i,
+      matchId: idNames[i],
+      imageFront: `./images/card_0${(Math.floor(i / 2) + 1)}.png`
+    });
     deckOfCards.push(card);
   }
   return deckOfCards;
 }
 
-function startNewGame() {
+const startNewGame = () => {
   deck = new Deck(instanciateCards());
   document.querySelector(".card-area").innerHTML = "";
   advanceToGameBoard();
@@ -40,7 +21,7 @@ function startNewGame() {
   upDateP1Score();
 }
 
-function onPageLoad() {
+const onPageLoad = () => {
   rulesScreen.classList.add("hidden");
   gamePlayContainer.classList.add("hidden");
   p1ErrorMessage.classList.add("hidden");
@@ -48,11 +29,11 @@ function onPageLoad() {
   upDateP1Score();
 }
 
-function upDateP1Score() {
+const upDateP1Score = () => {
   document.querySelector(".p1-score").innerHTML = player1Matches;
 }
 
-function advanceToRulesScreen() {
+const advanceToRulesScreen = () => {
   if (!inputPlayer1.value) {
     p1ErrorMessage.classList.remove("hidden");
   } else {
@@ -62,7 +43,7 @@ function advanceToRulesScreen() {
   }
 }
 
-function advanceToGameBoard() {
+const advanceToGameBoard = () => {
   startTime = Date.now();
   document.querySelector(".p1-name").innerHTML = inputPlayer1.value;
   rulesScreen.classList.add("hidden");
@@ -71,18 +52,20 @@ function advanceToGameBoard() {
   createCardsOnDOM();
 }
 
-function createCardsOnDOM() {
+const createCardsOnDOM = () => {
   document.querySelector(".card-area").innerHTML = "";
-  for (var i = 0; i < deck.cards.length; i++) {
-  document.querySelector(".card-area").innerHTML += `
+  for (let i = 0; i < deck.cards.length; i++) {
+    document.querySelector(".card-area").innerHTML += `
    <div class="card card${deck.cards[i].cardId} grid${i}">
-     <img class ="c${deck.cards[i].cardId} card-back" src="./images/mario_card_back.jpg" alt="mario bricks">
-     <img class ="c${deck.cards[i].cardId} card-face" src=${deck.cards[i].imageFront} alt="blue flower">
+     <img class ="c${deck.cards[i].cardId} card-back"
+     src="./images/mario_card_back.jpg" alt="mario bricks">
+     <img class ="c${deck.cards[i].cardId} card-face"
+     src=${deck.cards[i].imageFront} alt="blue flower">
    </div>`
   }
 }
 
-function checkResetBoard() {
+const checkResetBoard = () => {
   if (deck.selectedCards.length >= 2) {
     if (deck.checkIfCardsMatch()) {
       player1Matches += 1;
@@ -93,25 +76,26 @@ function checkResetBoard() {
   }
 }
 
-function resetBoard() {
+const resetBoard = () => {
   deck.selectedCards = [];
-  for (var i = 0; i < deck.cards.length; i++) {
-  document.querySelector(`.card${i}`).classList.remove("flip");
+  for (let i = 0; i < deck.cards.length; i++) {
+    document.querySelector(`.card${i}`).classList.remove("flip");
   }
 }
 
-function moveToSelectedCards(target) {
-  for (var i = 0; i < deck.cards.length; i++) {
+const moveToSelectedCards = (target) => {
+  for (let i = 0; i < deck.cards.length; i++) {
     if (deck.cards[i].cardId === target) {
-      if (deck.selectedCards.length === 0 || deck.selectedCards[0].cardId !== target) {
+      if (deck.selectedCards.length === 0 ||
+        deck.selectedCards[0].cardId !== target) {
         deck.selectedCards.push(deck.cards[i]);
       }
     }
   }
 }
 
-function buttonConditionals(event) {
-  for (var i = 0; i < deck.cards.length; i++) {
+const buttonConditionals = (event) => {
+  for (let i = 0; i < deck.cards.length; i++) {
     if (event.target.classList.contains(`c${i}`)) {
       moveToSelectedCards(i);
       document.querySelector(`.card${i}`).classList.toggle("flip");
@@ -120,35 +104,60 @@ function buttonConditionals(event) {
   checkResetBoard();
 }
 
-function makeMatchingCardsDissapear() {
-  var target = deck.selectedCards[0].matchId;
-  for (var i = 0; i < deck.cards.length; i++) {
+const makeMatchingCardsDissapear = () => {
+  let target = deck.selectedCards[0].matchId;
+  for (let i = 0; i < deck.cards.length; i++) {
     if (deck.cards[i].matchId === target) {
-       var cardId = deck.cards[i].cardId;
-       document.querySelector(`.card${cardId}`).classList.add("hidden");
-       deck.matchedCards.push(deck.cards[i]);
-       upDateP1Score();
-       displayYouWin();
+      let cardId = deck.cards[i].cardId;
+      document.querySelector(`.card${cardId}`).classList.add("hidden");
+      deck.matchedCards.push(deck.cards[i]);
+      upDateP1Score();
+      displayYouWin();
     }
   }
   deck.selectedCards = [];
 }
 
-function timeCheck() {
-  var endTime = Date.now();
-  var totalTime = (endTime - startTime) / 1000;
-  var min = Math.floor(totalTime / 60);
-  var sec = Math.round (totalTime % 60);
+const timeCheck = () => {
+  let endTime = Date.now();
+  let totalTime = (endTime - startTime) / 1000;
+  let min = Math.floor(totalTime / 60);
+  let sec = Math.round (totalTime % 60);
   winningMessage = `You finshed in ${min}min(s) and ${sec}sec(s)!`;
   return totalTime;
 }
 
-function displayYouWin() {
+const displayYouWin = () => {
   if (deck.matchedCards.length === deck.cards.length) {
-    var playersTime = timeCheck();
+    let playersTime = timeCheck();
     document.querySelector(".card-area").innerHTML = `
     <p class="winner-message-l1">you win ${inputPlayer1.value}!</p>
     <p class="winner-message-l2">${winningMessage}</p>`
     localStorage.setItem(inputPlayer1.value, JSON.stringify(playersTime));
   }
 }
+
+// Gloval letiables
+let addPlayersScreen = document.querySelector(".add-players-screen");
+let rulesScreen = document.querySelector(".rules-screen");
+let header = document.querySelector("header");
+let gamePlayContainer = document.querySelector("section");
+let inputPlayer1 = document.querySelector(".input-player-1");
+let playGameButton = document.querySelector(".play-game-button");
+let p1ErrorMessage = document.querySelector(".p1-error-message");
+let playGameButton2 = document.querySelector(".play-game-button2");
+let player1Matches = 0;
+let winningMessage = "";
+let startTime = 0;
+let deck = new Deck(instanciateCards());
+
+// On Window Load
+window.onload = onPageLoad();
+
+// Event Listeners
+document.querySelector(".start-new-game-button")
+  .addEventListener("click", startNewGame);
+document.querySelector(".card-area")
+  .addEventListener("click", buttonConditionals);
+playGameButton.addEventListener("click", advanceToRulesScreen);
+playGameButton2.addEventListener("click", advanceToGameBoard);

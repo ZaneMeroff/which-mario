@@ -1,5 +1,7 @@
 # which-mario (Super Mario Memory Match)
 
+- link to live page: https://zanemeroff.github.io/which-mario
+
 ### Introduction to the Project
 This was my second solo project in Mod 1 at Turing School of Software and Design. I started this project on 10/30/19 and finished it on 11/05/19. I was given an example composition with a specific layout and functions/methods/class structures to follow. I used HTML, CSS, and three different JavaScript files. One file was for the bulk of my JS code including majority of the functions/variables and the other two were for classes of Deck and Cards. This was my favorite project of Mod1. I really enjoyed building my first game, and I learned a lot about using CSS animations. I also practiced my localStorage skills and brushed up my abilities to work with classes and objects. The parts of this project that were the most challenging were the CSS animations, finding dynamic ways to instantiate multiple cards, randomizing those cards on the DOM, and manipulating class properties. This was by far the most technical and complex app I have built to date.
 
